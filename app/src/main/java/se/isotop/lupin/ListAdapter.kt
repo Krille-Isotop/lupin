@@ -49,11 +49,11 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
     }
 
     interface ListItem {
-        val id: Long
+        val id: String
         val type: Int
 
         companion object {
-            val TYPE_CALENDAR_EVENT = 0
+            const val TYPE_CALENDAR_EVENT = 0
         }
     }
 }

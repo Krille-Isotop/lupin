@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import se.isotop.lupin.ListAdapter
@@ -13,11 +15,15 @@ import se.isotop.lupin.R
 class CalendarFragment : Fragment() {
 
     private val adapter = ListAdapter()
+    private lateinit var eventsViewModel: EventsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        eventsViewModel = ViewModelProviders.of(this).get(EventsViewModel::class.java)
+
         return inflater.inflate(R.layout.fragment_calendar, container, false)
     }
 
@@ -27,11 +33,13 @@ class CalendarFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        val list = mutableListOf<ListAdapter.ListItem>()
-        for (i in 0L..30L) {
-            list.add(CalendarListItem(i, "Titel! $i"))
-        }
-        adapter.setData(list)
+        eventsViewModel.all.observe(viewLifecycleOwner, Observer {  events ->
+            val data = events.map {
+                CalendarListItem(it.id, it.title)
+            }
+
+            adapter.setData(data)
+        })
     }
 
     override fun onDestroyView() {
