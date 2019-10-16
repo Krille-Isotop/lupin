@@ -12,6 +12,7 @@ class CalendarEvent() {
     var image: String = ""
     var location: GeoPoint = GeoPoint(0.0, 0.0)
 
+    // We probably need another location variable: location name, like "Kitchen"
     override fun toString(): String {
         return "CalendarEvent(id='$id', startTime=$startTime, endTime=$endTime, title='$title', description='$description', image='$image', location=$location)"
     }

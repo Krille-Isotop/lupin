@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.Timestamp
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import se.isotop.lupin.ListAdapter
 import se.isotop.lupin.R
@@ -35,11 +36,23 @@ class CalendarFragment : Fragment() {
 
         eventsViewModel.all.observe(viewLifecycleOwner, Observer {  events ->
             val data = events.map {
-                CalendarListItem(it.id, it.title)
+                CalendarListItem(
+                    it.id,
+                    it.title,
+                    it.description,
+                    getHoursAndMinutesFrom(it.startTime),
+                    "12-13",
+                    "Plats?!"
+                )
             }
 
             adapter.setData(data)
         })
+    }
+
+    private fun getHoursAndMinutesFrom(timestamp: Timestamp): String {
+        val date = timestamp.toDate()
+        return "${date.hours}.${date.minutes}"
     }
 
     override fun onDestroyView() {
