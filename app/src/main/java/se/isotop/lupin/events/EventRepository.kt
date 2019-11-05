@@ -11,7 +11,7 @@ class EventRepository {
 
     private val db = FirebaseFirestore.getInstance()
 
-    fun getAllEvents() : LiveData<List<CalendarEvent>> {
+    fun getAllEvents(): LiveData<List<CalendarEvent>> {
         val liveData = MutableLiveData<List<CalendarEvent>>()
 
         db.collection(COLLECTION_CALENDAR_EVENTS)
@@ -40,28 +40,30 @@ class EventRepository {
         today.set(Calendar.HOUR_OF_DAY, 0)
         today.set(Calendar.MINUTE, 0)
         today.set(Calendar.SECOND, 0)
-        db.collection(COLLECTION_CALENDAR_EVENTS).whereGreaterThan(
-            FIELD_START_TIME,
-            Timestamp(today.time)
-        ).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
-            if (firebaseFirestoreException != null) {
-                Log.w(TAG, firebaseFirestoreException)
-                return@addSnapshotListener
-            }
-
-            val list = querySnapshot?.map { document ->
-                document.toObject(CalendarEvent::class.java).apply {
-                    id = document.id
+        db.collection(COLLECTION_CALENDAR_EVENTS)
+            .orderBy(FIELD_START_TIME)
+            .whereGreaterThan(
+                FIELD_START_TIME,
+                Timestamp(today.time)
+            ).addSnapshotListener { querySnapshot, firebaseFirestoreException ->
+                if (firebaseFirestoreException != null) {
+                    Log.w(TAG, firebaseFirestoreException)
+                    return@addSnapshotListener
                 }
-            }
 
-            liveData.value = list
-        }
+                val list = querySnapshot?.map { document ->
+                    document.toObject(CalendarEvent::class.java).apply {
+                        id = document.id
+                    }
+                }
+
+                liveData.value = list
+            }
 
         return liveData
     }
 
-    companion object{
+    companion object {
         private val TAG = EventRepository::class.java.simpleName
 
         private const val COLLECTION_CALENDAR_EVENTS = "calendar-events"

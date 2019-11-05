@@ -21,7 +21,7 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
     init {
 
         all = Transformations.map(repository.getUpcomingEvents()) { events ->
-            val groups = events.sortedBy { it.startTime }.groupBy {
+            val groups = events.groupBy {
 
                 val calendar = Calendar.getInstance()
                 calendar.time = it.startTime.toDate()
