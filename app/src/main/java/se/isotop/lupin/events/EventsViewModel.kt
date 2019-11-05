@@ -14,19 +14,6 @@ class EventsViewModel: ViewModel() {
     private val db = FirebaseFirestore.getInstance()
 
     init {
-        /*
-        db.collection("users")
-        .get()
-        .addOnSuccessListener { result ->
-            for (document in result) {
-                Log.d(TAG, "${document.id} => ${document.data}")
-            }
-        }
-        .addOnFailureListener { exception ->
-            Log.w(TAG, "Error getting documents.", exception)
-        }
-         */
-
         db.collection(COLLECTION_CALENDAR_EVENTS)
             .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 if (firebaseFirestoreException != null) {
@@ -41,24 +28,7 @@ class EventsViewModel: ViewModel() {
                 }
 
                 _all.value = list
-
-
             }
-
-            /*.get()
-            .addOnSuccessListener { result ->
-
-                val list = result.map { document ->
-                    document.toObject(CalendarEvent::class.java).apply {
-                        id = document.id
-                    }
-                }
-
-                _all.value = list
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Couldn't fetch documents", exception);
-            }*/
     }
 
     companion object {
