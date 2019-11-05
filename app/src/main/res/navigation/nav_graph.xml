@@ -9,5 +9,5 @@
         android:id="@+id/calendarFragment"
         android:name="se.isotop.lupin.events.CalendarFragment"
         android:label="fragment_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_recyler_with_toolbar" />
 </navigation>

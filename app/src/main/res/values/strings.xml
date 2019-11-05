@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Lupin</string>
+    <string name="calendar_header">Kalender</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="previous">Tidigare</string>
+    <string name="today">Idag</string>
+    <string name="tomorrow">Imorgon</string>
 </resources>

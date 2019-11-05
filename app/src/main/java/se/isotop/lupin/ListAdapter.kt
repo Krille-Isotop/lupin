@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
 import se.isotop.lupin.events.CalendarEventViewHolder
+import se.isotop.lupin.ui.listitems.HeaderViewHolder
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
@@ -18,6 +19,10 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
             ListItem.TYPE_CALENDAR_EVENT -> {
                 val view = inflater.inflate(R.layout.list_item_calendar_event, parent, false)
                 CalendarEventViewHolder(view)
+            }
+            ListItem.TYPE_HEADER -> {
+                val view = inflater.inflate(R.layout.list_item_header, parent, false)
+                HeaderViewHolder(view)
             }
             else -> {
                 throw IllegalStateException("Can't create view holder for type $viewType")
@@ -54,6 +59,7 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 
         companion object {
             const val TYPE_CALENDAR_EVENT = 0
+            const val TYPE_HEADER = 1
         }
     }
 }
