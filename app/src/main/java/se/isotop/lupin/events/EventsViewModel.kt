@@ -45,7 +45,8 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
                         it.description,
                         getHoursAndMinutesFrom(it.startTime),
                         "12-13",
-                        "Plats?!"
+                        "Plats?!",
+                        it.image
                     )
                     items.add(item)
                 }

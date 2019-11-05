@@ -9,7 +9,7 @@ class CalendarEvent() {
     var endTime: Timestamp = Timestamp.now()
     var title: String = ""
     var description: String = ""
-    var image: String = ""
+    var image: String? = null
     var location: GeoPoint = GeoPoint(0.0, 0.0)
 
     // We probably need another location variable: location name, like "Kitchen"
