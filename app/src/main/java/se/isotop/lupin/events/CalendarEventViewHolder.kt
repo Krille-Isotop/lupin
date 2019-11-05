@@ -24,9 +24,7 @@ class CalendarEventViewHolder(itemView: View) : ListAdapter.ListViewHolder(itemV
                     .asBitmap()
                     .load(it)
                     .into(object : CustomTarget<Bitmap>(){
-                        override fun onLoadCleared(placeholder: Drawable?) {
-
-                        }
+                        override fun onLoadCleared(placeholder: Drawable?) {}
 
                         override fun onResourceReady(
                             resource: Bitmap,
