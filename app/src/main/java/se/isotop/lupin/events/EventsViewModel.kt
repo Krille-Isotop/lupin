@@ -5,12 +5,17 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.GeoPoint
 import se.isotop.lupin.ListAdapter
 import se.isotop.lupin.R
 import se.isotop.lupin.ui.listitems.HeaderListItem
 import java.text.DateFormat
 import java.util.Calendar
 import java.util.Locale
+import kotlin.math.acos
+import kotlin.math.cos
+import kotlin.math.round
+import kotlin.math.sin
 
 class EventsViewModel(app: Application) : AndroidViewModel(app) {
 
@@ -45,7 +50,7 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
                         it.description,
                         getHoursAndMinutesFrom(it.startTime),
                         "12-13",
-                        "Plats?!",
+                        distanceFromIsotop(it.location),
                         it.image
                     )
                     items.add(item)
@@ -80,7 +85,7 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
         tomorrow.time = today.time
         tomorrow.add(Calendar.HOUR_OF_DAY, 24)
 
-        val nextWeek= Calendar.getInstance()
+        val nextWeek = Calendar.getInstance()
         nextWeek.time = today.time
         nextWeek.add(Calendar.DAY_OF_YEAR, 7)
 
@@ -105,8 +110,36 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    private fun distanceFromIsotop(geoPoint: GeoPoint) : String {
+        return if(geoPoint == CalendarEvent.EMPTY_LOCATION) {
+            "Plats?!"
+        } else {
+            "${round(distance(geoPoint.latitude, geoPoint.longitude, ISOTOP_LAT, ISOTOP_LON))}  km från Isotop"
+        }
+    }
+
+    // Source:
+    // https://stackoverflow.com/questions/6981916/how-to-calculate-distance-between-two-locations-using-their-longitude-and-latitu
+
+    private fun distance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
+        val theta = lon1 - lon2
+        var dist = sin(deg2rad(lat1)) * sin(deg2rad(lat2)) + cos(deg2rad(lat1)) * cos(deg2rad(lat2)) * cos(deg2rad(theta))
+        dist = acos(dist)
+        dist = rad2deg(dist)
+        dist *= 60 * 1.1515
+        return (dist)
+    }
+
+    private fun deg2rad(deg: Double): Double = (deg * Math.PI / 180.0)
+
+
+    private fun rad2deg(rad: Double): Double = (rad * 180.0 / Math.PI)
+
+
     companion object {
         private const val TAG = "EventsViewModel"
         private val LOCALE_SWEDISH = Locale("sv", "SE")
+        private const val ISOTOP_LAT = 59.3368266
+        private const val ISOTOP_LON = 18.0692704
     }
 }
