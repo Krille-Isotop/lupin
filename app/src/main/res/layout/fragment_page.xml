@@ -2,8 +2,6 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
-
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -23,7 +21,6 @@
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
             app:toolbarId="@+id/toolbar"
             tools:title="Surfning vid Peniche!">
-
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -50,20 +47,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/edge_margin"
                 android:layout_marginEnd="@dimen/edge_margin"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="@tools:sample/lorem/random" />
-            
+
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/items_margin"
                 android:importantForAccessibility="no"
-                app:layout_constraintTop_toBottomOf="@id/preamble"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic"/>
+                app:layout_constraintTop_toBottomOf="@id/preamble"
+                tools:src="@tools:sample/backgrounds/scenic" />
 
             <TextView
                 android:id="@+id/body"
@@ -72,10 +70,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/edge_margin"
                 android:layout_marginEnd="@dimen/edge_margin"
-                app:layout_constraintTop_toBottomOf="@id/image"
+                android:layout_marginTop="@dimen/items_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image"
                 tools:text="@tools:sample/lorem/random" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
