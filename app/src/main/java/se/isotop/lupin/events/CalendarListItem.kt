@@ -8,7 +8,6 @@ data class CalendarListItem(
     val title: String,
     val subTitle: String,
     val startTime: String,
-    val times: String,
     val location: String,
     val image: String? = null
 ) : ListAdapter.ListItem {

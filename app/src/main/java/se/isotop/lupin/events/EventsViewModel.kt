@@ -47,9 +47,8 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
                     val item = CalendarListItem(
                         it.id,
                         it.title,
-                        it.description,
+                        "${getHoursAndMinutesFrom(it.startTime)} - ${getHoursAndMinutesFrom(it.endTime)}",
                         getHoursAndMinutesFrom(it.startTime),
-                        "12-13",
                         distanceFromIsotop(it.location),
                         it.image
                     )
