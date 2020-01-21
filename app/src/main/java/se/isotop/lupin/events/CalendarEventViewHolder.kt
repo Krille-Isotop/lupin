@@ -14,10 +14,10 @@ import se.isotop.lupin.ListAdapter
 class CalendarEventViewHolder(itemView: View) : ListAdapter.ListViewHolder(itemView) {
     override fun bind(listItem: ListAdapter.ListItem) {
         if (listItem is CalendarListItem) {
-            timeView.text = listItem.startTime
+            startTimeView.text = listItem.startTime
             eventTitle.text = listItem.title
-            eventSubtitle.text = listItem.subTitle
-            locationView.text = listItem.location
+            eventTime.text = listItem.subTitle
+            eventLocation.text = listItem.location
 
             cardView.setOnClickListener {
                 listItem.action()
@@ -41,10 +41,10 @@ class CalendarEventViewHolder(itemView: View) : ListAdapter.ListViewHolder(itemV
 
                             val invertedColor = 0x00FFFFFF.xor(color)
 
-                            timeView.setTextColor(invertedColor)
+                            startTimeView.setTextColor(invertedColor)
                             eventTitle.setTextColor(invertedColor)
-                            eventSubtitle.setTextColor(invertedColor)
-                            locationView.setTextColor(invertedColor)
+                            eventTime.setTextColor(invertedColor)
+                            eventLocation.setTextColor(invertedColor)
                         }
                     })
 

@@ -2,4 +2,5 @@
 <resources>
     <dimen name="edge_margin">23dp</dimen>
     <dimen name="items_margin">35dp</dimen>
+    <dimen name="card_page_margin">25dp</dimen>
 </resources>

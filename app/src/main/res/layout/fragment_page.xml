@@ -17,16 +17,24 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             app:collapsedTitleTextAppearance="@style/TitleStyle"
-            app:expandedTitleTextAppearance="@style/HeaderStyle"
+            app:expandedTitleTextAppearance="@style/ToolbarTitleStyle"
             app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
-            app:toolbarId="@+id/toolbar"
-            tools:title="Surfning vid Peniche!">
+            app:toolbarId="@+id/toolbar">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:collapseIcon="@drawable/ic_arrow_back_black_24dp" />
+                app:collapseIcon="@drawable/ic_arrow_back_black_24dp">
+
+                <TextView
+                    android:id="@+id/toolbarTitle"
+                    style="@style/ToolbarTitleStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Surfning vid Peniche!" />
+
+            </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -40,6 +48,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <include layout="@layout/list_item_calendar_event"
+                android:id="@+id/calendarCard"
+                android:layout_marginTop="@dimen/edge_margin"
+                android:layout_marginStart="@dimen/card_page_margin"
+                android:layout_marginEnd="@dimen/card_page_margin"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
             <TextView
                 android:id="@+id/preamble"
                 style="@style/BodyStyle"
@@ -47,9 +66,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/edge_margin"
                 android:layout_marginEnd="@dimen/edge_margin"
+                android:layout_marginTop="@dimen/items_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calendarCard"
                 tools:text="@tools:sample/lorem/random" />
 
             <ImageView

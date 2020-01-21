@@ -34,7 +34,7 @@ class CalendarFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-        collapsingToolbarLayout.title = getString(R.string.calendar_header)
+        toolbarTitle.text = getString(R.string.calendar_header)
 
         eventsViewModel.all.observe(viewLifecycleOwner, Observer {  events ->
             adapter.setData(events)

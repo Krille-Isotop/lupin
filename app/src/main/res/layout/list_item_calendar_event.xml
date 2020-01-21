@@ -27,7 +27,7 @@
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/timeView"
+            android:id="@+id/startTimeView"
             style="@style/TitleStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,35 +46,35 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toTopOf="@id/eventSubtitle"
+            app:layout_constraintBottom_toTopOf="@id/eventTime"
             app:layout_constraintEnd_toStartOf="@id/arrowView"
-            app:layout_constraintStart_toEndOf="@id/timeView"
+            app:layout_constraintStart_toEndOf="@id/startTimeView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread_inside"
             tools:text="MIDDAG" />
 
         <TextView
-            android:id="@+id/eventSubtitle"
+            android:id="@+id/eventTime"
             style="@style/SubTitleStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="@id/locationView"
+            app:layout_constraintBottom_toTopOf="@id/eventLocation"
             app:layout_constraintEnd_toEndOf="@+id/eventTitle"
             app:layout_constraintStart_toStartOf="@+id/eventTitle"
             app:layout_constraintTop_toBottomOf="@+id/eventTitle"
             tools:text="17.30 - 20.30" />
 
         <TextView
-            android:id="@+id/locationView"
+            android:id="@+id/eventLocation"
             style="@style/SubTitleStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/eventSubtitle"
+            app:layout_constraintEnd_toEndOf="@+id/eventTime"
             app:layout_constraintStart_toStartOf="@id/eventTitle"
-            app:layout_constraintTop_toBottomOf="@id/eventSubtitle"
+            app:layout_constraintTop_toBottomOf="@id/eventTime"
             tools:text="La Bomba" />
 
         <ImageView
