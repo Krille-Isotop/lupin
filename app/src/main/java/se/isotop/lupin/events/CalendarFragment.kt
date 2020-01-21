@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_recyler_with_toolbar.*
 import se.isotop.lupin.ListAdapter
@@ -37,6 +38,13 @@ class CalendarFragment : Fragment() {
 
         eventsViewModel.all.observe(viewLifecycleOwner, Observer {  events ->
             adapter.setData(events)
+        })
+
+        eventsViewModel.click.observe(viewLifecycleOwner, Observer { event ->
+            event.getContentIfNotHandled()?.let {
+                val action = CalendarFragmentDirections.actionCalendarFragmentToPageFragment(it)
+                findNavController(this).navigate(action)
+            }
         })
     }
 

@@ -3,15 +3,16 @@ package se.isotop.lupin.events
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.GeoPoint
 import se.isotop.lupin.ListAdapter
+import se.isotop.lupin.LiveDataEvent
 import se.isotop.lupin.R
 import se.isotop.lupin.ui.listitems.HeaderListItem
 import java.text.DateFormat
-import java.util.Calendar
-import java.util.Locale
+import java.util.*
 import kotlin.math.acos
 import kotlin.math.cos
 import kotlin.math.round
@@ -20,11 +21,12 @@ import kotlin.math.sin
 class EventsViewModel(app: Application) : AndroidViewModel(app) {
 
     val all: LiveData<List<ListAdapter.ListItem>>
-
+    private val _click: MutableLiveData<LiveDataEvent<String>> = MutableLiveData()
+    val click: LiveData<LiveDataEvent<String>> = _click
+    
     private val repository = EventRepository()
 
     init {
-
         all = Transformations.map(repository.getUpcomingEvents()) { events ->
             val groups = events.groupBy {
 
@@ -51,7 +53,9 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
                         getHoursAndMinutesFrom(it.startTime),
                         distanceFromIsotop(it.location),
                         it.image
-                    )
+                    ) {
+                        _click.value = LiveDataEvent(it.id)
+                    }
                     items.add(item)
                 }
             }
@@ -59,6 +63,8 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
             items
         }
     }
+
+    fun getEvent(id: String): LiveData<CalendarEvent> = repository.getEvent(id)
 
     private fun getHoursAndMinutesFrom(timestamp: Timestamp): String {
         val calendar = Calendar.getInstance().apply {
@@ -109,11 +115,18 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    private fun distanceFromIsotop(geoPoint: GeoPoint) : String {
-        return if(geoPoint == CalendarEvent.EMPTY_LOCATION) {
+    private fun distanceFromIsotop(geoPoint: GeoPoint): String {
+        return if (geoPoint == CalendarEvent.EMPTY_LOCATION) {
             "Plats?!"
         } else {
-            "${round(distance(geoPoint.latitude, geoPoint.longitude, ISOTOP_LAT, ISOTOP_LON))}  km från Isotop"
+            "${round(
+                distance(
+                    geoPoint.latitude,
+                    geoPoint.longitude,
+                    ISOTOP_LAT,
+                    ISOTOP_LON
+                )
+            )}  km från Isotop"
         }
     }
 
@@ -122,7 +135,10 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
 
     private fun distance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
         val theta = lon1 - lon2
-        var dist = sin(deg2rad(lat1)) * sin(deg2rad(lat2)) + cos(deg2rad(lat1)) * cos(deg2rad(lat2)) * cos(deg2rad(theta))
+        var dist =
+            sin(deg2rad(lat1)) * sin(deg2rad(lat2)) + cos(deg2rad(lat1)) * cos(deg2rad(lat2)) * cos(
+                deg2rad(theta)
+            )
         dist = acos(dist)
         dist = rad2deg(dist)
         dist *= 60 * 1.1515

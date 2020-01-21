@@ -33,6 +33,28 @@ class EventRepository {
         return liveData
     }
 
+    fun getEvent(id: String) : LiveData<CalendarEvent> {
+        val liveData = MutableLiveData<CalendarEvent>()
+
+        db.collection(COLLECTION_CALENDAR_EVENTS)
+            .document(id)
+            .addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
+                if (firebaseFirestoreException != null) {
+                    Log.w(TAG, firebaseFirestoreException)
+                    return@addSnapshotListener
+                }
+
+                val foo = documentSnapshot?.toObject(CalendarEvent::class.java)
+
+                foo?.let { it.id = id }
+
+                liveData.value = foo
+
+        }
+
+        return liveData
+    }
+
     fun getUpcomingEvents(): LiveData<List<CalendarEvent>> {
         val liveData = MutableLiveData<List<CalendarEvent>>()
 

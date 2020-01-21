@@ -19,6 +19,10 @@ class CalendarEventViewHolder(itemView: View) : ListAdapter.ListViewHolder(itemV
             eventSubtitle.text = listItem.subTitle
             locationView.text = listItem.location
 
+            cardView.setOnClickListener {
+                listItem.action()
+            }
+
             listItem.image?.let {
                 Glide.with(itemView.context)
                     .asBitmap()

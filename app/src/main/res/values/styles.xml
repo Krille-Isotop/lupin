@@ -24,4 +24,10 @@
         <item name="android:textSize">36sp</item>
     </style>
 
+    <style name="BodyStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:fontFamily">@font/barlow_medium</item>
+    </style>
+
 </resources>
