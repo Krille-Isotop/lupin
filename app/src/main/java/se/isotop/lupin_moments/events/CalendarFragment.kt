@@ -42,7 +42,7 @@ class CalendarFragment : Fragment() {
 
         eventsViewModel.click.observe(viewLifecycleOwner, Observer { event ->
             event.getContentIfNotHandled()?.let {
-                val action = CalendarFragmentDirections.actionCalendarFragmentToPageFragment(it)
+                val action = CalendarFragmentDirections.actionCalendarFragmentToEventFragment()
                 findNavController(this).navigate(action)
             }
         })

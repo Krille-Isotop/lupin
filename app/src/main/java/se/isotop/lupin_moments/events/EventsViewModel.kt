@@ -55,9 +55,4 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
             items
         }
     }
-
-    companion object {
-        private const val TAG = "EventsViewModel"
-        private val LOCALE_SWEDISH = Locale("sv", "SE")
-    }
 }

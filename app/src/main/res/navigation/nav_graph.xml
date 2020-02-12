@@ -11,15 +11,11 @@
         android:label="fragment_calendar"
         tools:layout="@layout/fragment_recyler_with_toolbar" >
         <action
-            android:id="@+id/action_calendarFragment_to_pageFragment"
-            app:destination="@id/pageFragment" />
+            android:id="@+id/action_calendarFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
     </fragment>
     <fragment
-        android:id="@+id/pageFragment"
-        android:name="se.isotop.lupin_moments.page.PageFragment"
-        android:label="PageFragment" >
-        <argument
-            android:name="id"
-            app:argType="string" />
-    </fragment>
+        android:id="@+id/eventFragment"
+        android:name="se.isotop.lupin_moments.event.EventFragment"
+        android:label="EventFragment" />
 </navigation>
