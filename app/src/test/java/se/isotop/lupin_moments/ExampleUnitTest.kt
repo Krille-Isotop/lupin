@@ -1,4 +1,4 @@
-package se.isotop.lupin
+package se.isotop.lupin_moments
 
 import org.junit.Test
 

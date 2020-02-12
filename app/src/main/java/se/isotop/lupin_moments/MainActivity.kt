@@ -1,4 +1,4 @@
-package se.isotop.lupin
+package se.isotop.lupin_moments
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

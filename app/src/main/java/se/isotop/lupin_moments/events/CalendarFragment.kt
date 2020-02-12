@@ -1,4 +1,4 @@
-package se.isotop.lupin.events
+package se.isotop.lupin_moments.events
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_recyler_with_toolbar.*
-import se.isotop.lupin.ListAdapter
-import se.isotop.lupin.R
+import se.isotop.lupin_moments.ListAdapter
+import se.isotop.lupin_moments.R
 
 class CalendarFragment : Fragment() {
 

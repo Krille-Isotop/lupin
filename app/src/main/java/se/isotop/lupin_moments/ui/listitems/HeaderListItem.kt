@@ -1,6 +1,6 @@
-package se.isotop.lupin.ui.listitems
+package se.isotop.lupin_moments.ui.listitems
 
-import se.isotop.lupin.ListAdapter
+import se.isotop.lupin_moments.ListAdapter
 
 data class HeaderListItem(
     val title: String

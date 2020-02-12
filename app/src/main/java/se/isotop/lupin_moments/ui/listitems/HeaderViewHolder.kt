@@ -1,8 +1,8 @@
-package se.isotop.lupin.ui.listitems
+package se.isotop.lupin_moments.ui.listitems
 
 import android.view.View
 import kotlinx.android.synthetic.main.list_item_header.*
-import se.isotop.lupin.ListAdapter
+import se.isotop.lupin_moments.ListAdapter
 
 class HeaderViewHolder(itemView: View) : ListAdapter.ListViewHolder(itemView) {
 

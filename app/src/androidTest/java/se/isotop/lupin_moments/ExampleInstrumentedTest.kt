@@ -1,4 +1,4 @@
-package se.isotop.lupin
+package se.isotop.lupin_moments
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

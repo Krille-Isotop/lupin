@@ -1,12 +1,12 @@
-package se.isotop.lupin
+package se.isotop.lupin_moments
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.extensions.LayoutContainer
-import se.isotop.lupin.events.CalendarEventViewHolder
-import se.isotop.lupin.ui.listitems.HeaderViewHolder
+import se.isotop.lupin_moments.events.CalendarEventViewHolder
+import se.isotop.lupin_moments.ui.listitems.HeaderViewHolder
 
 class ListAdapter: RecyclerView.Adapter<ListAdapter.ListViewHolder>() {
 

@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Lupin.iml" filepath="$PROJECT_DIR$/Lupin.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lupin-Lupin.iml" filepath="$PROJECT_DIR$/lupin-Lupin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/lupin-app.iml" filepath="$PROJECT_DIR$/app/lupin-app.iml" />
     </modules>
   </component>
 </project>

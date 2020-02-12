@@ -10,7 +10,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.1"
     defaultConfig {
-        applicationId "se.isotop.lupin"
+        applicationId "se.isotop.lupin_moments"
         minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
