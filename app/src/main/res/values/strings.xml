@@ -5,4 +5,6 @@
     <string name="previous">Tidigare</string>
     <string name="today">Idag</string>
     <string name="tomorrow">Imorgon</string>
+    <string name="main_notification_channel">LUPIN-NOTIFICATIONS</string>
+    <string name="main_notification_channel_description">Main notification channel for moments-lupin</string>
 </resources>
