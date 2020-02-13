@@ -43,7 +43,8 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
                         it.id,
                         it.title,
                         it.description,
-                        it.startTimeAsString
+                        it.startTimeAsString,
+                        it.imageURL
                     ) {
                         _click.value = LiveDataEvent(it.id)
                     }
@@ -54,6 +55,8 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
             items
         }
     }
+
+    fun getEvent(id: String): LiveData<CalendarEvent> = repository.getEvent(id)
 
     private fun Calendar.niceDateFormat(): String? {
 
@@ -84,7 +87,6 @@ class EventsViewModel(app: Application) : AndroidViewModel(app) {
                 DateFormat.getDateInstance(DateFormat.LONG, LOCALE_SWEDISH).format(this.time)
             }
             after(tomorrow) -> {
-                // i övermorgon ++
                 getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, LOCALE_SWEDISH)
             }
             else -> {

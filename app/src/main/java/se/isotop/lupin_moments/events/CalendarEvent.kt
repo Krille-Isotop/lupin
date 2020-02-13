@@ -14,6 +14,7 @@ class CalendarEvent {
     var endDate: Timestamp = Timestamp.now()
     var title: String = ""
     var description: String = ""
+    var imageURL: String = ""
 
     val startTimeAsString: String
         get() = getHoursAndMinutesFrom(startDate)

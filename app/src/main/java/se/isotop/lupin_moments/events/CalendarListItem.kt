@@ -8,6 +8,7 @@ data class CalendarListItem(
     val title: String,
     val subTitle: String,
     val startTime: String,
+    var imageURL: String,
     val action: () -> Unit
 ) : ListAdapter.ListItem {
     override val type: Int = TYPE_CALENDAR_EVENT

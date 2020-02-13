@@ -21,6 +21,34 @@ class CalendarEventViewHolder(itemView: View) : ListAdapter.ListViewHolder(itemV
             cardView.setOnClickListener {
                 listItem.action()
             }
+
+            listItem.imageURL?.let {
+                Glide.with(itemView.context)
+                    .asBitmap()
+                    .load(it)
+                    .into(object : CustomTarget<Bitmap>(){
+                        override fun onLoadCleared(placeholder: Drawable?) {}
+
+                        override fun onResourceReady(
+                            resource: Bitmap,
+                            transition: Transition<in Bitmap>?
+                        ) {
+                            val palette = Palette.from(resource).generate()
+                            palette.swatches
+
+                            val color = palette.getDominantColor(Color.BLACK)
+
+                            val invertedColor = 0x00FFFFFF.xor(color)
+
+                            startTimeView.setTextColor(invertedColor)
+                            eventTitle.setTextColor(invertedColor)
+                            eventTime.setTextColor(invertedColor)
+                            eventLocation.setTextColor(invertedColor)
+                        }
+                    })
+
+                Glide.with(itemView).load(it).into(cardBackground)
+            }
         }
     }
 }

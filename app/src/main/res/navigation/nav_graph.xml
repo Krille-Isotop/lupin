@@ -17,5 +17,9 @@
     <fragment
         android:id="@+id/eventFragment"
         android:name="se.isotop.lupin_moments.event.EventFragment"
-        android:label="EventFragment" />
+        android:label="EventFragment" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>
