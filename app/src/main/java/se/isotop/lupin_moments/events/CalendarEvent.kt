@@ -1,12 +1,7 @@
 package se.isotop.lupin_moments.events
 
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.GeoPoint
 import java.util.*
-import kotlin.math.acos
-import kotlin.math.cos
-import kotlin.math.round
-import kotlin.math.sin
 
 class CalendarEvent {
     var id: String = ""
